@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     ADMIN_IDS: List[int]
     FORMAT_LOG: str = '{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}'
     LOG_ROTATION: str = '10 MB'
-    DB_URL: str
+    DATABASE_URL: str
     STORE_URL: str
     BASE_SITE: str
     TG_API_SITE: str
@@ -20,6 +20,10 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env')
         )
+
+    def get_database_url(self) -> str:
+        """Возвращает путь к базе данных"""
+        return self.DATABASE_URL
 
     def get_webhook_url(self) -> str:
         """Возвращаем URL вебхука."""
