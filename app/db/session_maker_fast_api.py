@@ -33,11 +33,17 @@ class DatabaseSession:
                     await session.rollback()
                     logger.debug('Откат изменений выполнен')
                 except Exception as rollback_error:
-                    logger.error(f'Не удалось выполнить откат: {type(rollback_error).__name__}: {rollback_error}')
+                    logger.error(
+                        f'Не удалось выполнить откат: {type(rollback_error).__name__}: {rollback_error}')
+                    raise rollback_error from e
                 raise
             finally:
-                await session.close()
-                logger.debug('Сессия базы данных закрыта')
+                try:
+                    await session.close()
+                    logger.debug('Сессия базы данных закрыта')
+                except Exception as close_error:
+                    logger.error(
+                        f'Не удалось закрыть сессию: {type(close_error).__name__}: {close_error}')
 
 
 db_session = DatabaseSession()
