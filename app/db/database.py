@@ -1,11 +1,11 @@
 from datetime import datetime
 from decimal import Decimal
 import uuid
-from sqlalchemy import func, inspect
+from sqlalchemy import Integer, func, inspect
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr
 from sqlalchemy.ext.asyncio import \
     AsyncAttrs, async_sessionmaker, create_async_engine, AsyncSession
-from app.config import settings
+from app.core.config import settings
 
 
 engine = create_async_engine(url=settings.get_database_url())
@@ -19,9 +19,9 @@ class Base(AsyncAttrs, DeclarativeBase):
 
     __abstract__ = True
 
-    create_at: Mapped[datetime] = mapped_column(
-        server_default=func.now())
-    update_at: Mapped[datetime] = mapped_column(
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(
         server_default=func.now(), onupdate=func.now())
 
     @declared_attr.directive

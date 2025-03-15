@@ -71,17 +71,14 @@ class HTTPClientManager:
         Закрытие всех клиентов в пуле.
         """
         async with self._lock:
-            errors = []
             for client in self._clients[:]:  # Используем копию списка для безопасного удаления
                 try:
                     await client.aclose()  # Закрываем клиент
                 except Exception as e:
                     logging.error(f'Не удалось закрыть клиент: {e}')
-                    errors.append(e)
+                    raise f'Ошибки при закрытии клиентов: {e}'
                 finally:
                     self._clients.remove(client)  # Удаляем клиент из пула
-            if errors:
-                raise RuntimeError(f'Ошибки при закрытии клиентов: {errors}')
 
     @asynccontextmanager
     async def client(self):
@@ -100,4 +97,4 @@ class HTTPClientManager:
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-http_client_manager = HTTPClientManager(timeout=30.0)
+http_client_manager = HTTPClientManager()
