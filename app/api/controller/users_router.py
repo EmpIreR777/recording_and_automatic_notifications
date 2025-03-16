@@ -12,3 +12,11 @@ MOSCOW_TZ = pytz.timezone('Europe/Moscow')
 
 
 router = APIRouter()
+
+
+@router.get("/")
+async def home_page():
+    return {
+        "message": "Добро пожаловать! Пусть эта заготовка станет удобным инструментом для вашей работы и "
+        "приносит вам пользу!"
+    }

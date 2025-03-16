@@ -13,6 +13,9 @@ class DatabaseSession:
     обрабатывать коммиты, откаты и закрытие сессии.
     """
 
+    # def __init__(self):
+    #     self._cache = {}
+
     @staticmethod
     @asynccontextmanager
     async def get_session(commit: bool = False) -> AsyncGenerator[AsyncSession, None]:
@@ -44,6 +47,17 @@ class DatabaseSession:
                 except Exception as close_error:
                     logger.error(
                         f'Не удалось закрыть сессию: {type(close_error).__name__}: {close_error}')
+
+    # async def get_cached_data(self, key):
+    #     """
+    #     Возвращает данные из кеша или загружает их из базы данных.
+    #     """
+    #     if key in self._cache:
+    #         return self._cache[key]
+    #     async with self.get_session() as session:
+    #         data = await session.execute(...)  # Загрузка данных
+    #         self._cache[key] = data
+    #         return data
 
 
 db_session = DatabaseSession()
