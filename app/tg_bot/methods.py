@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from httpx import AsyncClient
+from loguru import logger
 from app.core.config import settings
 
 
@@ -8,6 +9,7 @@ async def bot_send_message(client: AsyncClient, chat_id: int, text: str, kb: lis
     send_data = {"chat_id": chat_id, "text": text, "parse_mode": "HTML"}
     if kb:
         send_data["reply_markup"] = {"inline_keyboard": kb}
+        logger.info(f"Sending message with data: {send_data}")
     await client.post(f"{settings.get_tg_api_url()}/sendMessage", json=send_data)
 
 
