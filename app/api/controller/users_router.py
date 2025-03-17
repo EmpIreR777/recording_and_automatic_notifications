@@ -11,7 +11,7 @@ from app.db.session_maker_fast_api import db_session
 MOSCOW_TZ = pytz.timezone('Europe/Moscow')
 
 
-router = APIRouter()
+router = APIRouter(tags=['Users'])
 
 
 @router.get("/")

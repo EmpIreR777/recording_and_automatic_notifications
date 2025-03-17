@@ -1,4 +1,3 @@
-from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession
 from loguru import logger
@@ -17,7 +16,6 @@ class DatabaseSession:
     #     self._cache = {}
 
     @staticmethod
-    @asynccontextmanager
     async def get_session(commit: bool = False) -> AsyncGenerator[AsyncSession, None]:
         """
         Асинхронный контекстный менеджер для получения сессии базы данных.

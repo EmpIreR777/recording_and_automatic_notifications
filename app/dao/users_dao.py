@@ -1,7 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.schemas.users_schemas import BookingSlot
 from app.dao.base import BaseDAO
 from app.db.models.models import User
 

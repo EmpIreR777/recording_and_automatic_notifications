@@ -27,7 +27,7 @@ class HTTPClientManager:
         """
         async with self._lock:
             if len(self._clients) < self._pool_size:
-                logging.info(f"Создание нового клиента. Размер пула: {len(self._clients)}/{self._pool_size}")
+                logging.info(f'Создание нового клиента. Размер пула: {len(self._clients)}/{self._pool_size}')
                 try:
                     # Создаем новый клиент с переданными параметрами (включая timeout)
                     client = httpx.AsyncClient(**self._client_kwargs)
@@ -37,7 +37,7 @@ class HTTPClientManager:
                     logging.error(f'Не удалось создать HTTP-клиент: {e}')
                     raise RuntimeError(f'Не удалось создать HTTP-клиент: {e}')
             else:
-                logging.info(f"Использование клиента из пула. Размер пула: {len(self._clients)}/{self._pool_size}")
+                logging.info(f'Использование клиента из пула. Размер пула: {len(self._clients)}/{self._pool_size}')
                 return self._clients.pop(0)  # Возвращаем первый клиент из пула
 
     async def release_client(self, client: httpx.AsyncClient):
@@ -46,7 +46,7 @@ class HTTPClientManager:
         """
         async with self._lock:
             if client.is_closed:
-                logging.warning("Попытка вернуть закрытый клиент в пул.")
+                logging.warning('Попытка вернуть закрытый клиент в пул.')
                 return
             if len(self._clients) < self._pool_size:
                 self._clients.append(client)  # Возвращаем клиент в пул

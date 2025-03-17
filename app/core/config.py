@@ -1,9 +1,15 @@
 import os
 from typing import List
+from dotenv import load_dotenv
 
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+env_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env')
+
+load_dotenv(env_file_path, override=True)
 
 
 class Settings(BaseSettings):
@@ -17,9 +23,7 @@ class Settings(BaseSettings):
     TG_API_SITE: str
     FRONT_SITE: str
 
-    model_config = SettingsConfigDict(
-        env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env')
-        )
+    model_config = SettingsConfigDict(env_file=env_file_path)
 
     def get_database_url(self) -> str:
         """Возвращает путь к базе данных"""
