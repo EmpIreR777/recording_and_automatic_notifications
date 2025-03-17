@@ -1,7 +1,5 @@
-from datetime import date, datetime, timedelta
-from loguru import logger
 import pytz
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.dao.specializations_dao import SpecializationDAO
