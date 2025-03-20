@@ -32,10 +32,10 @@ async def schedule_appointment_notification(
     job_id = f'notification_{user_tg_id}_{appointment["id"]}_{reminder_label}'
 
     scheduler.add_job(
-        send_user_noti,
-        'date',
-        run_date=notification_time,
-        args=[user_tg_id, appointment],
-        id=job_id,
-        replace_existing=True,
-        )
+        send_user_noti,  # Функция, которая будет выполнена
+        'date',  # Тип триггера (в данном случае одноразовая задача)
+        run_date=notification_time,  # Время выполнения задачи
+        args=[user_tg_id, appointment],  # Аргументы для функции
+        id=job_id,  # Уникальный идентификатор задачи
+        replace_existing=True,  # Заменить задачу, если ID уже существует
+    )
