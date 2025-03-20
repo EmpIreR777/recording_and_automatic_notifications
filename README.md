@@ -31,7 +31,7 @@
 
 - **Backend**: FastAPI, SQLAlchemy,.
 - **База данных**: PostgreSQL или Sqlite
-- **Frontend**:  HTML, Jinja2, CSS, JS
+- **Frontend**:  HTML, Jinja2, CSS, JavaScript и Vue.js 3
 - **Telegram Bot**: Aiogram-3
 - **Дополнительные инструменты**: Docker, Docker Compose, Yandex Geocoder API.
 

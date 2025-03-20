@@ -6,8 +6,8 @@ from app.schemas.users_schemas import UserModel
 from app.schemas.specializations_schemas import TelegramIDModel
 from app.tg_bot.kbs import back_kb, main_kb, generate_kb_profile
 from app.tg_bot.methods import call_answer, bot_send_message, \
-    get_about_text, get_booking_text, get_greeting_text, format_appointment
-
+    get_about_text, get_booking_text, get_greeting_text
+from app.tg_bot.utils import format_appointment
 
 async def cmd_start(client: AsyncClient, session, user_info):
     user_id_db = await UserDAO.find_one_or_none(

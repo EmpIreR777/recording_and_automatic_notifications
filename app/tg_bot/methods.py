@@ -1,13 +1,12 @@
-from datetime import datetime
-
 from httpx import AsyncClient
 from app.core.config import settings
+from app.tg_bot.utils import pluralize_appointments
 
 
 async def bot_send_message(client: AsyncClient, chat_id: int, text: str, kb: list | None = None):
-    send_data = {"chat_id": chat_id, "text": text, "parse_mode": "HTML"}
+    send_data = {'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'}
     if kb:
-        send_data["reply_markup"] = {"inline_keyboard": kb}
+        send_data['reply_markup'] = {'inline_keyboard': kb}
     await client.post(f"{settings.get_tg_api_url()}/sendMessage", json=send_data)
 
 
@@ -84,26 +83,4 @@ def get_booking_text(appointment_count):
     return message_text
 
 
-def pluralize_appointments(count: int) -> str:
-    if count == 1:
-        return "прием"
-    elif 2 <= count <= 4:
-        return "приема"
-    else:
-        return "приемов"
 
-
-def format_appointment(appointment, start_text="🗓 <b>Запись на прием</b>"):
-    appointment_date = datetime.strptime(appointment['day_booking'], '%Y-%m-%d').strftime('%d.%m.%Y')
-    return f"""
-            {start_text}
-
-            📅 Дата: {appointment_date}
-            🕒 Время: {appointment['time_booking']}
-            👨‍⚕️ Врач: {appointment['doctor_full_name']}
-            🏥 Специализация: {appointment['special']}
-
-            ℹ️ Номер записи: {appointment['id']}
-
-            Пожалуйста, приходите за 10-15 минут до назначенного времени.
-            """

@@ -3,7 +3,8 @@ from loguru import logger
 
 from app.async_client import http_client_manager
 from app.core.config import scheduler
-from app.tg_bot.methods import bot_send_message, format_appointment
+from app.tg_bot.methods import bot_send_message
+from app.tg_bot.utils import format_appointment
 
 
 async def send_user_noti(user_tg_id: int, appointment: dict):
@@ -27,10 +28,9 @@ async def schedule_appointment_notification(
     :param notification_time: Время напоминания
     :param reminder_label: Уникальный идентификатор напоминания (например, 'immediate', '24h', '6h', '30min')
     """
-    # Уникальный идентификатор задания
+
     job_id = f'notification_{user_tg_id}_{appointment["id"]}_{reminder_label}'
 
-    # Планируем задание
     scheduler.add_job(
         send_user_noti,
         'date',
