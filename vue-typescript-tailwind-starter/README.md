@@ -81,7 +81,6 @@ vue-typescript-tailwind-starter/
 │ ├── App.vue
 │ └── main.ts
 ├── index.html
-├── package.json
 ├── README.md
 ├── tsconfig.json
 ├── vite.config.ts

@@ -1,15 +1,10 @@
 {
-  "name": "tailwind_teach",
+  "name": "doctor_plus_24",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Стартовый шаблон для разработки современных веб-приложений с использованием Vue 3, Vite, TypeScript, Vue Router и Tailwind CSS.",
-  "author": "Яковенко Алексей <mr.mnogo@gmail.com> (https://t.me/yakvenalexx)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Yakvenalex/vue-typescript-tailwind-starter.git"
-  },
-  "license": "MIT",
+  "description": "Начальный шаблон Vue 3 с TypeScript и Tailwind CSS для фроненда",
+  "author": "Кирилл Юрьевич",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
@@ -24,8 +19,9 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.5.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "stylelint-config-tailwindcss": "^1.0.0",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",

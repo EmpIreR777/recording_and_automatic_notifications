@@ -3,7 +3,6 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.dao.specializations_dao import SpecializationDAO
-from app.schemas.specializations_schemas import SpecIDModel
 from app.db.session_maker_fast_api import db_session
 
 MOSCOW_TZ = pytz.timezone('Europe/Moscow')
