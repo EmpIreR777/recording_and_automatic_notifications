@@ -25,7 +25,7 @@
 1. Клонируйте репозиторий:
 
 ```bash
-git clone https://github.com/Yakvenalex/vue-typescript-tailwind-starter.git
+git clone 
 ```
 
 2. Перейдите в директорию проекта:
@@ -87,20 +87,3 @@ vue-typescript-tailwind-starter/
 ├── vite.config.ts
 └── tailwind.config.js
 ```
-
-## Лицензия
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Контакты
-
-Автор сборки - [Яковенко Алексей](https://t.me/yakvenalexx) - mr.mnogo@gmail.com
-Подготовлено для телеграмм сообщества - [Легкий путь в Python](https://t.me/PythonPathMaster)
-
-Ссылка на проект: [https://github.com/Yakvenalex/vue-typescript-tailwind-starter](https://github.com/Yakvenalex/vue-typescript-tailwind-starter)
-
-Не забудьте отметить проект звездочкой, если он оказался вам полезным! Ваша поддержка мотивирует меня продолжать улучшать и развивать этот стартовый шаблон.
-
-## Вклад в проект
-
-Если у вас есть идеи по улучшению или вы нашли ошибку, пожалуйста, создайте issue или отправьте pull request.
