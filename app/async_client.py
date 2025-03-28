@@ -49,9 +49,9 @@ class HTTPClientManager:
                 logging.warning('Попытка вернуть закрытый клиент в пул.')
                 return
             if len(self._clients) < self._pool_size:
-                self._clients.append(client)  # Возвращаем клиент в пул
+                self._clients.append(client) # Возвращаем клиент в пул
             else:
-                await client.aclose()  # Закрываем клиент, если пул заполнен
+                await client.aclose() # Закрываем клиент, если пул заполнен
 
     async def close_client(self, client: httpx.AsyncClient):
         """
@@ -87,7 +87,7 @@ class HTTPClientManager:
         """
         client = await self.get_client()  # Получаем клиент из пула
         try:
-            yield client  # Возвращаем клиент для использования
+            yield client
         except Exception as e:
             logging.error(f'Ошибка при работе с HTTP-клиентом: {e}')
             raise
